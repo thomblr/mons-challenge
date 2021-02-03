@@ -7,4 +7,34 @@
     <h1>Préférences</h1>
 </header>
 
+<div class="container">
+    <div class="settings">
+        <form action="#">
+            <label for="address">Adresse du domicile</label>
+            <input type="text" id="address" value="Current address">
+
+            <label for="category">Catégorie d'utilisateur</label>
+            <select id="category" value="travailleur">
+                <option value="travailleur">Travailleur</option>
+                <option value="student">Etudiant</option>
+                <option value="parent">Parent d'élève</option>
+            </select>
+
+            <label for="address">Langue</label>
+            <select id="langue" value="french">
+                <option value="french">Français</option>
+                <option value="english">English</option>
+                <option value="ndls">Nederlands</option>
+            </select>
+
+            <input type="submit" value="Enregistrer">
+        </form>
+    </div>
+
+    <div class="infos">
+        <a href="#">Mes titres de transport</a>
+        <a href="#">Mes données</a>
+    </div>
+</div>
+
 {% endblock %}
