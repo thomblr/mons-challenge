@@ -7,4 +7,28 @@
     <h1>Nouvelle destination</h1>
 </header>
 
+<div class="container">
+    <form action="#">
+        <label for="start">Départ</label>
+        <input type="text" id="start" placeholder="Localisation de départ">
+
+        <label for="time">à</label>
+        <input type="time" id="time" name="time" min="00:00" max="23:59" required>
+
+        <label for="end">Destination</label>
+        <input type="text" id="end" placeholder="Localisation d'arrivée">
+
+        <input type="radio" id="short" name="trajet" value="short" checked>
+        <label for="short">Le plus court</label>
+
+        <input type="radio" id="fast" name="trajet" value="fast">
+        <label for="fast">Le plus rapide</label>
+
+        <input type="radio" id="eco" name="trajet" value="eco">
+        <label for="eco">Le plus écologique</label>
+
+        <input type="submit" value="Valider">
+    </form>
+</div>
+
 {% endblock %}
