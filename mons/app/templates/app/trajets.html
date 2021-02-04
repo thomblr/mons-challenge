@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<header>
+    <a href="/destination/">Back</a>
+    <h1>Parcours</h1>
+</header>
+
+<ul>
+    <li>à pieds : {{ duration_foot|floatformat }} heures</li>
+    <li>en voiture : {{ duration_car|floatformat }} heures</li>
+</ul>
+
+<ul>
+    Cambios
+    {% for camb in cambios %}
+    <li>{{ camb.car_name }} à {{ camb.car_dist|floatformat }} km.</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    Gares
+    {% for gare in gares %}
+    <li>{{ gare.gare_name }} à {{ gare.distance|floatformat }} km.</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

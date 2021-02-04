@@ -8,7 +8,9 @@
 </header>
 
 <div class="container">
-    <p><box-icon name="user-circle" type="solid"></box-icon> Prénom Nom</p>
+    <p><box-icon name="user-circle" type="solid"></box-icon> Bienvenue {{ username }}</p>
+    <p>Mes points : {{ pts }}</p>
+    <a href="{% url 'logout' %}"><box-icon name='log-out'></box-icon></a>
 
     <ul>
         <li><a href="/preferences/">Mes préférences</a></li>

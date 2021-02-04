@@ -2,20 +2,21 @@
 
 {% block content %}
 
-<header>
+<header class="accueil-header">
     <img src="" alt="dragon">
     <h1>Mons</h1>
     <a href="/profile/"><box-icon name="user-circle" type="solid"></box-icon> account</a>
 </header>
 
 <div class="container">
-    <div class="reasearch">
-        <input type="text" placeholder="Nouvelle destination...">
-        <input type="checkbox" name="save" id="save" value="save">
-        <label for="save">Enregistrer mon trajet</label>
-    </div>
+    <form class="reasearch" action="/destination/" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="O">
+    </form>
 
-    <img src="" alt="velo">
+    {% load static %}
+    <img class="accueil-rider" src="{% static 'app/img/undraw_Ride_a_bicycle_2yok.svg' %}" alt="">
 
     <div class="parcours">
         <a href="#">Parcours favori</a>
@@ -23,7 +24,7 @@
     </div>
 </div>
 
-<div class="covoiturage"><box-icon name="car" type="solid"></box-icon> Covoiturage</div>
+<a href="#" class="accueil-covoiturage"><span><box-icon name="car" type="solid" size="md" color="#bd3f32"></box-icon> Covoiturage</span></a>
 
 <footer>
     <ul>

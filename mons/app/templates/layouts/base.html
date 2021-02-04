@@ -5,15 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'variables.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
     <title>Mons Challenge</title>
 </head>
 <body>
-    
-{% include '../layouts/header.html' %}
 
-{% block content %}
-{% endblock %}
+<div class="all-content">
+    {% include '../layouts/header.html' %}
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script>
+    const cambios = "{% static 'data/cambios-stations.json' %}"
+    const gares_sncb = "{% static 'data/gares-sncb.geojson' %}"
+    const schools = "{% static 'data/signaletique-fase.geojson' %}"
+</script>
 
 <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="{% static 'app/data.js' %}"></script>
 </body>
 </html>
