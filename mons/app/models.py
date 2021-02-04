@@ -15,3 +15,11 @@ class SaveTripPoints(models.Model):
     trajet = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
     pts = models.IntegerField()
+
+    pts_choices = [
+        ('Validé', 'validated'),
+        ('En attente', 'waiting'),
+        ('Refusé', 'refused')
+    ]
+
+    statut = models.CharField(choices=pts_choices, max_length=100)
