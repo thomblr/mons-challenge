@@ -1,0 +1,91 @@
+body {
+    background: #8e9eab;
+    background: linear-gradient(45deg, #8e9eab 0%, #eef2f3 100%) no-repeat;
+    color: var(--main-p-color);
+    height: 100vh;
+    font-family: Nunito, sans-serif;
+    display: grid;
+    place-items: center;
+}
+
+.all-content {
+    width: 375px;
+    height: 812px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: rgb(189,63,50);
+    background: linear-gradient(45deg, rgba(189,63,50,1) 0%, rgba(232,113,129,1) 100%) no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 650px;
+}
+
+header > img {
+    position: absolute;
+}
+
+.accueil-header {
+    top: 40px;
+}
+
+.accueil-rider {
+    width: 205px;
+    height: 152px;
+}
+
+.accueil-covoiturage {
+    position: absolute;
+    display: inline-block;
+    bottom: 0;
+    left: 0;
+    background: white;
+    height: 207px;
+    width: 211px;
+    border-radius: 50%;
+    transform: translateX(-40%) translateY(40%);
+    text-decoration: none;
+}
+
+.accueil-covoiturage > span {
+    display: inline-block;
+    position: absolute;
+    left: 95px;
+    top: 50px;
+    color: var(--first-bg-color);
+    font-weight: 600;
+}
+
+.accueil-covoiturage > span > box-icon {
+    display: inline-block;
+    position: absolute;
+    left: 30px;
+    top: 20px;
+}
+
+.parcours {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.parcours > a {
+    display: grid;
+    place-items: center;
+    width: 115px;
+    height: 70px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+}
