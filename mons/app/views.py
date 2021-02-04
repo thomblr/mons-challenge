@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import loader
 from opencage.geocoder import OpenCageGeocode
+import datetime
 
 from .forms import AccueilDestinationForm, NewDestinationForm, SaveSettingsForm
 from .utilities import distance, get_cambio_by_id, get_near_cambio_stations, get_cambio_distance, get_close_stations
@@ -96,6 +97,22 @@ def trajets(request):
         end = request.POST['destination'] + " BELGIQUE"
         trip_type = request.POST['trip']
 
+        time = request.POST['time']
+        time_obj = datetime.datetime.strptime(time, '%H:%S')
+
+        busy_hours = False
+        first_hour = datetime.time(7, 30)
+        second_hour = datetime.time(9, 0)
+        if time_obj.time() <= second_hour and time_obj.time() >= first_hour:
+            busy_hours = True
+        
+        third_hour = datetime.time(16, 00)
+        fourth_hour = datetime.time(18, 00)
+        if time_obj.time() <= fourth_hour and time_obj.time() >= third_hour:
+            busy_hours = True
+
+        print(busy_hours)
+
         results_start = geocoder.geocode(depart)
         results_end = geocoder.geocode(end)
 
@@ -122,13 +139,17 @@ def trajets(request):
             results_end[0]['geometry']['lng'])
 
         duration_trajet_pieds = (1/4.7) * distance_km
-        duration_trajet_car = (1/60) * distance_km
+        duration_trajet_car = (1/50) * distance_km
 
         context = {
-            'duration_foot': duration_trajet_pieds,
-            'duration_car': duration_trajet_car,
+            'duration_trip': {
+                'foot': duration_trajet_pieds,
+                'car': duration_trajet_car
+            },
+            'busy_hours': busy_hours,
             'cambios': cambios,
-            'gares': close_gares
+            'gares': close_gares,
+            'eco': True if trip_type == 'eco' else False
         }
 
         template = loader.get_template('app/trajets.html')
@@ -137,6 +158,13 @@ def trajets(request):
         return HttpResponseRedirect('/destination/')
 
 
-def parcours(request):
-    template = loader.get_template('app/parcours.html')
-    return HttpResponse(template.render({}, request))
+def parcours(request, slug):
+    slug_types = ['car', 'feet', 'train', 'bus', 'cambio']
+
+    if slug in slug_types:
+        trip_time = 0
+
+        template = loader.get_template('app/parcours.html')
+        return HttpResponse(template.render({}, request))
+    else:
+        return HttpResponseRedirect('/')
