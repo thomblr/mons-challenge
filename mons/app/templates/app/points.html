@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<header>
+    <a href="/profile/">Back</a>
+    <h1>Mes points</h1>
+</header>
+
+<div class="container">
+    <p>Mes points : <span>{{ pts }}</span></p>
+    
+    <ul>
+        {% for info in infos %}
+        <li>{{ info.date|date:"d M Y" }} | {{ info.trajet }} | {{ info.statut }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -7,25 +7,29 @@
     <h1>Parcours</h1>
 </header>
 
+{% if busy_hours %}
+<div class="alert">
+    <p>Attention! Vous comptez partir pendant les heures de pointe.</p>
+    <p>Des retards peuvent arriver.</p>
+</div>
+{% endif %}
+
 <ul>
-    <li><a href="#">à pieds</a> : {{ duration_trip.foot|floatformat }} heures</li>
+    <li><a href="/parcours/walk/">à pieds</a> : {{ duration_trip.foot|floatformat:"0" }} min</li>
+
+    <li><a href="/parcours/cycling/">à vélo</a> : {{ duration_trip.bike|floatformat:"0" }} min</li>
+
     {% if not eco %}
-    <li><a href="#">en voiture</a> : {{ duration_trip.car|floatformat }} heures</li>
+    <li><a href="/parcours/car/">en voiture</a> : {{ duration_trip.car|floatformat:"0" }} min</li>
     {% endif %}
-</ul>
 
-<ul>
-    Cambios
-    {% for camb in cambios %}
-    <li><a href="#">{{ camb.car_name }}</a> à {{ camb.car_dist|floatformat }} km.</li>
-    {% endfor %}
-</ul>
+    {% if gare %}
+    <li><a href="/parcours/train/">en train</a></li>
+    {% endif %}
 
-<ul>
-    Gares
-    {% for gare in gares %}
-    <li><a href="#">{{ gare.gare_name }}</a> à {{ gare.distance|floatformat }} km.</li>
-    {% endfor %}
+    {% if rent_car %}
+    <li><a href="/parcours/taxi/">en voiture de location</a></li>
+    {% endif %}
 </ul>
 
 

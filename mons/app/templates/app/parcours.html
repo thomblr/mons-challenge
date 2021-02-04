@@ -7,4 +7,22 @@
     <h1>Parcours</h1>
 </header>
 
+<div class="container">
+    <box-icon name="{{ icon_type }}" color="white" animation="tada-hover" size="lg"></box-icon>
+    <p>Trajet de {{ start_location.address }}</p>
+    <p>Jusque {{ end_location.address }}</p>
+    <p>Distance : {{ distance }}</p>
+
+    <div class="parcours-info">
+        <p>Consommation</p>
+        <p>Durée du trajet</p>
+    </div>
+    
+    <a href="/parcours_validation/">Valider le trajet</a>
+</div>
+
+<footer>
+    <a href="#">Circulation</a>
+</footer>
+
 {% endblock %}
