@@ -92,6 +92,10 @@ header > img {
     height: 65px;
     border: none;
     border-radius: 32.5px;
+    outline: none;
+    padding: 20px 60px 20px 20px;
+    font-size: 17px;
+    color: #8D1D12;
 }
 
 .icon-search {
