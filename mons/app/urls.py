@@ -9,4 +9,5 @@ urlpatterns = [
     path('preferences/', views.preferences, name="preferences"),
     path('destination/', views.destination, name="destination"),
     path('trajets/', views.trajets, name="trajets"),
+    path('parcours/<slug:slug>', views.parcours, name="parcours"),
 ]
