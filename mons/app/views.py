@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
+from django.db.models import Sum
 from opencage.geocoder import OpenCageGeocode
 import datetime
 
@@ -27,13 +28,12 @@ def profile(request):
     user = request.user.username
 
     try:
-        pts = SaveTripPoints.objects.get(user = request.user)
+        pts = SaveTripPoints.objects.get(user = request.user).pts
     except Exception:
         pts = 0
 
     context = {
-        'username': user,
-        'pts': pts
+        'username': user
     }
 
     return HttpResponse(template.render(context, request))
@@ -119,37 +119,52 @@ def trajets(request):
         lat = results_start[0]['geometry']['lat']
         lng = results_start[0]['geometry']['lng']
 
+        gare = False
         close_gares = get_close_stations(lat, lng)
+        if len(close_gares) > 0:
+            gare = True
 
-        cambios = []
-        cars = get_near_cambio_stations(results_start[0]['geometry']['lat'], results_start[0]['geometry']['lng'])
+        rent_car = False
+        cars = get_near_cambio_stations(lat, lng)
 
-        for car in cars:
-            dist = get_cambio_distance(results_start[0]['geometry']['lat'], results_start[0]['geometry']['lng'], car)
-            cambios.append({
-                'car_id': car,
-                'car_name': get_cambio_by_id(car)['displayName'],
-                'car_dist': dist
-            })
+        if len(cars) > 0:
+            rent_car = True
 
         distance_km = distance(
             results_start[0]['geometry']['lat'],
             results_start[0]['geometry']['lng'],
             results_end[0]['geometry']['lat'],
-            results_end[0]['geometry']['lng'])
+            results_end[0]['geometry']['lng']
+        )
 
         duration_trajet_pieds = (1/4.7) * distance_km
         duration_trajet_car = (1/50) * distance_km
+        duration_trajet_bike = (1/15) * distance_km
 
         context = {
+            'gare': gare,
+            'rent_car': rent_car,
             'duration_trip': {
-                'foot': duration_trajet_pieds,
-                'car': duration_trajet_car
+                'foot': duration_trajet_pieds * 60,
+                'car': duration_trajet_car * 60,
+                'bike': duration_trajet_bike * 60
             },
             'busy_hours': busy_hours,
-            'cambios': cambios,
-            'gares': close_gares,
             'eco': True if trip_type == 'eco' else False
+        }
+
+        request.session['current_search'] = {
+            'start_location': {
+                'address': request.POST['depart'],
+                'latitude': lat,
+                'longitude': lng
+            },
+            'end_location': {
+                'latitude': results_end[0]['geometry']['lat'],
+                'longitude': results_end[0]['geometry']['lng'],
+                'address': request.POST['destination']
+            },
+            'distance': distance_km
         }
 
         template = loader.get_template('app/trajets.html')
@@ -158,13 +173,36 @@ def trajets(request):
         return HttpResponseRedirect('/destination/')
 
 
-def parcours(request, slug):
-    slug_types = ['car', 'feet', 'train', 'bus', 'cambio']
+def parcours(request, transport):
+    transport_types = ['car', 'walk', 'train', 'bus', 'taxi', 'cycling']
 
-    if slug in slug_types:
-        trip_time = 0
-
+    if transport in transport_types:
+        current_search = request.session.get('current_search', {})
+        current_search['icon_type'] = transport
         template = loader.get_template('app/parcours.html')
-        return HttpResponse(template.render({}, request))
+        return HttpResponse(template.render(current_search, request))
     else:
         return HttpResponseRedirect('/')
+
+
+@login_required
+def points(request):
+    try:
+        infos = list(SaveTripPoints.objects.all().filter(user = request.user).values())
+        pts = SaveTripPoints.objects.all().filter(user = request.user).aggregate(Sum('pts'))
+    except SaveTripPoints.DoesNotExist:
+        pts = 0
+        infos = {}
+
+    context = {
+        'username': request.user.username,
+        'pts': pts['pts__sum'],
+        'infos': infos,
+    }
+
+    template = loader.get_template('app/points.html')
+    return HttpResponse(template.render(context, request))
+
+
+def parcours_validation(request):
+    return HttpResponseRedirect('/')
