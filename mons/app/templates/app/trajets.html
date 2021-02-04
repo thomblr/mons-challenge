@@ -3,26 +3,28 @@
 {% block content %}
 
 <header>
-    <a href="/destination/">Back</a>
+    <a href="/">Home</a>
     <h1>Parcours</h1>
 </header>
 
 <ul>
-    <li>à pieds : {{ duration_foot|floatformat }} heures</li>
-    <li>en voiture : {{ duration_car|floatformat }} heures</li>
+    <li><a href="#">à pieds</a> : {{ duration_trip.foot|floatformat }} heures</li>
+    {% if not eco %}
+    <li><a href="#">en voiture</a> : {{ duration_trip.car|floatformat }} heures</li>
+    {% endif %}
 </ul>
 
 <ul>
     Cambios
     {% for camb in cambios %}
-    <li>{{ camb.car_name }} à {{ camb.car_dist|floatformat }} km.</li>
+    <li><a href="#">{{ camb.car_name }}</a> à {{ camb.car_dist|floatformat }} km.</li>
     {% endfor %}
 </ul>
 
 <ul>
     Gares
     {% for gare in gares %}
-    <li>{{ gare.gare_name }} à {{ gare.distance|floatformat }} km.</li>
+    <li><a href="#">{{ gare.gare_name }}</a> à {{ gare.distance|floatformat }} km.</li>
     {% endfor %}
 </ul>
 

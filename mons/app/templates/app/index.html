@@ -2,21 +2,26 @@
 
 {% block content %}
 
+{% load static %}
 <header class="accueil-header">
-    <img src="" alt="dragon">
+    <img class="dragon-head" src="{% static 'app/img/g3.png' %}" alt="dragon">
     <h1>Mons</h1>
-    <a href="/profile/"><box-icon name="user-circle" type="solid"></box-icon> account</a>
+    <a href="/profile/"><box-icon name="user-circle" type="solid" size="lg" color="white"></box-icon></a>
 </header>
 
 <div class="container">
-    <form class="reasearch" action="/destination/" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="O">
-    </form>
+    <div class="form-search">
+        <form class="reasearch" action="/destination/" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <box-icon class="icon-search" name='search' size="md" color="#B8B8B8"></box-icon>
+            <input type="submit" value="Rechercher">
+        </form>
+    </div>
 
-    {% load static %}
-    <img class="accueil-rider" src="{% static 'app/img/undraw_Ride_a_bicycle_2yok.svg' %}" alt="">
+    <div class="img-rider">
+        <img class="accueil-rider" src="{% static 'app/img/undraw_Ride_a_bicycle_2yok.svg' %}" alt="">
+    </div>
 
     <div class="parcours">
         <a href="#">Parcours favori</a>
@@ -28,8 +33,8 @@
 
 <footer>
     <ul>
-        <li>Wallonnie</li>
-        <li>Mons</li>
+        <li><img class="wall-sponsor" src="{% static 'app/img/wallonie_coq_fb.png' %}" alt=""></li>
+        <li><img class="mons-sponsor" src="{% static 'app/img/7a6d55fa-ddcc-4dde-b2b8-e741dea7face.png' %}" alt=""></li>
     </ul>
 </footer>
 

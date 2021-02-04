@@ -21,14 +21,37 @@ body {
 
 h1 {
     font-size: 48px;
+    z-index: 50;
 }
 
 header {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     max-width: 650px;
+}
+
+.container {
+    position: relative;
+    top: 120px;
+}
+
+.wall-sponsor {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    height: 60px;
+    width: 60px;
+}
+
+.mons-sponsor {
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    height: 25px;
+    width: 100px;
 }
 
 header > img {
@@ -37,6 +60,71 @@ header > img {
 
 .accueil-header {
     top: 40px;
+}
+
+.dragon-head {
+    z-index: 0;
+    position: absolute;
+    left: 50px;
+    width: 111px;
+    height: 122px;
+    top: -10px;
+}
+
+.form-search {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    display: grid;
+    place-items: center;
+}
+
+.reasearch {
+    position: relative;
+}
+
+.reasearch > p {
+    width: 300px;
+}
+
+.reasearch > p > input[type="text"] {
+    width: 100%;
+    height: 65px;
+    border: none;
+    border-radius: 32.5px;
+}
+
+.icon-search {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    opacity: 0.6;
+}
+
+.reasearch > input[type="submit"] {
+    height: 30px;
+    border: none;
+    background: #8D1D12;
+    color: white;
+    font-weight: bolder;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 75px;
+    right: 0;
+}
+
+.reasearch > input[type="submit"]:hover {
+    background-color: #b8463c;
+}
+
+.img-rider {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 170px;
+    margin: 20px 0 -10px 0;
 }
 
 .accueil-rider {
@@ -76,7 +164,9 @@ header > img {
 .parcours {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px;
+    height: 150px;
 }
 
 .parcours > a {
@@ -88,4 +178,7 @@ header > img {
     border-radius: 20px;
     text-align: center;
     text-decoration: none;
+    color: #BD3F32;
+    font-weight: bold;
+    padding: 5px;
 }
