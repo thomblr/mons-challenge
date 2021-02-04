@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 from django import forms
 from django.contrib.admin.widgets import AdminTimeWidget
 
@@ -34,5 +35,5 @@ class NewDestinationForm(forms.Form):
 
 
 class AccueilDestinationForm(forms.Form):
-    address = forms.CharField()
+    address = forms.CharField(label="")
     save = forms.BooleanField(label="Enregistrer mon trajet", required=False)
