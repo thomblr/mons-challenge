@@ -11,5 +11,6 @@ urlpatterns = [
     path('trajets/', views.trajets, name="trajets"),
     path('parcours/<str:transport>/', views.parcours, name="parcours"),
     path('points/', views.points, name="points"),
-    path('parcours_validation/', views.parcours_validation, name="parcours_validation")
+    path('parcours_validation/', views.parcours_validation, name="parcours_validation"),
+    path('rgpd/', views.rgpd, name="rgpd")
 ]
