@@ -11,7 +11,7 @@ from opencage.geocoder import OpenCageGeocode
 import datetime
 
 from .forms import AccueilDestinationForm, NewDestinationForm, SaveSettingsForm
-from .utilities import distance, get_cambio_by_id, get_near_cambio_stations, get_cambio_distance, get_close_stations
+from .utilities import distance, get_near_cambio_stations, get_close_stations
 from django.contrib.staticfiles import finders
 
 
@@ -26,11 +26,6 @@ def profile(request):
     template = loader.get_template('app/profile.html')
 
     user = request.user.username
-
-    try:
-        pts = SaveTripPoints.objects.get(user = request.user).pts
-    except Exception:
-        pts = 0
 
     context = {
         'username': user
@@ -111,8 +106,6 @@ def trajets(request):
         if time_obj.time() <= fourth_hour and time_obj.time() >= third_hour:
             busy_hours = True
 
-        print(busy_hours)
-
         results_start = geocoder.geocode(depart)
         results_end = geocoder.geocode(end)
 
@@ -130,6 +123,11 @@ def trajets(request):
         if len(cars) > 0:
             rent_car = True
 
+        bus = False
+        # all_bus = get_close_bus_station(lat, lng)
+        # if len(all_bus) > 0:
+        #     bus = True
+
         distance_km = distance(
             results_start[0]['geometry']['lat'],
             results_start[0]['geometry']['lng'],
@@ -139,15 +137,19 @@ def trajets(request):
 
         duration_trajet_pieds = (1/4.7) * distance_km
         duration_trajet_car = (1/50) * distance_km
+        duration_trajet_car *= 60
+        if busy_hours:
+            duration_trajet_car += 25
         duration_trajet_bike = (1/15) * distance_km
 
         context = {
             'gare': gare,
             'rent_car': rent_car,
+            'bus': bus,
             'duration_trip': {
-                'foot': duration_trajet_pieds * 60,
-                'car': duration_trajet_car * 60,
-                'bike': duration_trajet_bike * 60
+                'foot': duration_trajet_pieds * 60 + 5,
+                'car': duration_trajet_car + 2,
+                'bike': duration_trajet_bike * 60 + 10,
             },
             'busy_hours': busy_hours,
             'eco': True if trip_type == 'eco' else False
@@ -176,9 +178,19 @@ def trajets(request):
 def parcours(request, transport):
     transport_types = ['car', 'walk', 'train', 'bus', 'taxi', 'cycling']
 
+    co_conso = {
+        'car': 157,
+        'walk': 0,
+        'train': 0,
+        'bus': 70/98,
+        'taxi': 150/4,
+        'cycling': 0
+    }
+
     if transport in transport_types:
         current_search = request.session.get('current_search', {})
-        current_search['icon_type'] = transport
+        current_search['conso'] = co_conso[transport]
+        request.session['trajet_type'] = transport
         template = loader.get_template('app/parcours.html')
         return HttpResponse(template.render(current_search, request))
     else:
@@ -189,7 +201,7 @@ def parcours(request, transport):
 def points(request):
     try:
         infos = list(SaveTripPoints.objects.all().filter(user = request.user).values())
-        pts = SaveTripPoints.objects.all().filter(user = request.user).aggregate(Sum('pts'))
+        pts = SaveTripPoints.objects.all().filter(user = request.user).filter(statut='Validé').aggregate(Sum('pts'))
     except SaveTripPoints.DoesNotExist:
         pts = 0
         infos = {}
@@ -204,5 +216,43 @@ def points(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required
 def parcours_validation(request):
+    transport_types = {
+        'car': {
+            'pts': 0,
+            'display': "Voiture"
+        }, 
+        'walk': {
+            'pts': 3,
+            'display': "Marche"
+        }, 
+        'train': {
+            'pts': 2,
+            'display': "Train"
+        }, 
+        'bus': {
+            'pts': 2,
+            'display': "Bus"
+        }, 
+        'taxi': {
+            'pts': 1,
+            'display': "Voiture de location"
+        }, 
+        'cycling': {
+            'pts': 3,
+            'display': "Vélo"
+        }
+    }
+
+    infos = request.session.get('trajet_type', {})
+    pts = transport_types[infos]['pts']
+    display_name = transport_types[infos]['display']
+    new_points = SaveTripPoints(user=request.user, trajet=display_name, pts=pts, statut='En attente')
+    new_points.save()
     return HttpResponseRedirect('/')
+
+
+def rgpd(request):
+    template = loader.get_template('app/rgpd.html')
+    return HttpResponse(template.render({}, request))
