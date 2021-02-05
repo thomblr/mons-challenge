@@ -3,11 +3,11 @@
 {% block content %}
 
 <header>
-    <a href="/profile/">Back</a>
+    <a href="/profile/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
     <h1>Préférences</h1>
 </header>
 
-<div class="container">
+<div class="container-pref">
     <div class="settings">
         <form method="POST">
             {% csrf_token %}
@@ -16,9 +16,11 @@
         </form>
     </div>
 
+    {% load static %}
+    <img class="pref-dragon" src="{% static 'app/img/Twotone.png' %}" alt="dragon">
     <div class="infos">
         <a href="#">Mes moyens de transport</a>
-        <a href="#">Mes données</a>
+        <a href="/rgpd/">Mes données</a>
     </div>
 </div>
 

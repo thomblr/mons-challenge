@@ -2,17 +2,21 @@
 
 {% block content %}
 
-<header>
-    <a href="/">Back</a>
+<header class="newdest-header">
+    <a href="/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
     <h1>Nouvelle destination</h1>
 </header>
 
-<div class="container">
+<div class="container-newdest">
     <form method="POST" action="/trajets/">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Valider">
     </form>
+
+    {% load static %}
 </div>
+
+<img class="newdest-img" src="{% static 'app/img/layer1.png' %}" alt="dragon">
 
 {% endblock %}

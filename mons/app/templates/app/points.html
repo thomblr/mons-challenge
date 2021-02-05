@@ -3,18 +3,20 @@
 {% block content %}
 
 <header>
-    <a href="/profile/">Back</a>
+    <a href="/profile/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
     <h1>Mes points</h1>
 </header>
 
-<div class="container">
-    <p>Mes points : <span>{{ pts }}</span></p>
+<div class="container-points">
+    <div class="points">Mes points : <span>{{ pts }}</span></div>
     
-    <ul>
-        {% for info in infos %}
-        <li>{{ info.date|date:"d M Y" }} | {{ info.trajet }} | {{ info.statut }}</li>
-        {% endfor %}
-    </ul>
+    <div class="points-list">
+        <ul>
+            {% for info in infos %}
+            <li>{{ info.date|date:"d M Y" }} | {{ info.trajet }} | {{ info.statut }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% endblock %}

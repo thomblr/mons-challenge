@@ -31,6 +31,7 @@ header {
     align-items: center;
     width: 100%;
     max-width: 650px;
+    top: 40px;
 }
 
 .container {
@@ -56,10 +57,6 @@ header {
 
 header > img {
     position: absolute;
-}
-
-.accueil-header {
-    top: 40px;
 }
 
 .dragon-head {
@@ -96,6 +93,7 @@ header > img {
     padding: 20px 60px 20px 20px;
     font-size: 17px;
     color: #8D1D12;
+    margin-bottom: 15px;
 }
 
 .icon-search {
@@ -185,4 +183,458 @@ header > img {
     color: #BD3F32;
     font-weight: bold;
     padding: 5px;
+}
+
+/* PROFILE */
+.profile-header {
+    position: relative;
+    left: 30px;
+    justify-content:left;
+    gap: 20px;
+}
+
+.profile-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-profile {
+    position: relative;
+    height: 50px;
+    top: 50px;
+}
+
+.container-profile > p {
+    display: flex;
+    height: 50px;
+}
+
+.logout {
+    float: right;
+    position: relative;
+    right: 50px;
+    top: -35px;
+}
+
+.buttons-settings {
+    position: relative;
+    top: 60px;
+    left: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.settings-profile > li {
+    height: 65px;
+    width: 300px;
+    background-color: white;
+    border-radius: 32.5px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+}
+
+.settings-profile > li > a {
+    text-decoration: none;
+    color: #BD3F32;
+    font-size: 26px;
+}
+
+/* RGPD */
+.container-rgpd {
+    position: relative;
+    top: 40px;
+    margin: 25px;
+    height: 500px;
+    overflow: scroll;
+}
+
+.container-rgpd ul li {
+    list-style-type: circle;
+}
+
+.container-rgpd p {
+    text-align: justify;
+    margin-bottom: 7px;
+}
+
+.container-rgpd form {
+    display: inline-block;
+}
+
+.valid-rgpd {
+    display: grid;
+    place-items: center;
+    position: relative;
+    left: 100px;
+    top: 70px;
+    text-decoration: none;
+    color: white;
+    background-color: #8DD35F;
+    height: 60px;
+    width: 170px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all .1s ease-in-out;
+}
+
+.valid-rgpd:hover {
+    box-shadow: 7px 7px 36px -21px rgba(0,0,0,0.75);
+}
+
+/* PREFERENCES */
+.container-pref {
+    position: relative;
+    top: 80px;
+    margin: 25px;
+}
+
+.container-pref input[type="text"] {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 32.5px;
+    outline: none;
+    padding: 20px 60px 20px 20px;
+    font-size: 17px;
+    color: #8D1D12;
+    margin-bottom: 15px;
+}
+
+.container-pref ul {
+    list-style-type: none;
+    position: relative;
+    left: 20px;
+    margin-bottom: 10px;
+}
+
+.container-pref select {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 32.5px;
+    outline: none;
+    font-size: 17px;
+    padding: 10px;
+    color: #8D1D12;
+    margin-bottom: 15px;
+}
+
+.container-pref input[type="submit"] {
+    height: 60px;
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #8DD35F;
+    font-size: 19px;
+    font-weight: bold;
+    position: relative;
+    top: 15px;
+    left: 85px;
+    cursor: pointer;
+}
+
+.container-pref input[type="submit"] {
+    box-shadow: 7px 7px 36px -21px rgba(0,0,0,0.75);
+}
+
+.container-pref .infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+    top: 100px;
+}
+
+.container-pref a {
+    height: 65px;
+    width: 300px;
+    background-color: #8D1D12;
+    border-radius: 32.5px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.container-pref a:hover {
+    box-shadow: 7px 7px 36px -21px rgba(0,0,0,0.75);
+}
+
+.pref-dragon {
+    position: absolute;
+    top: 362px;
+    left: 20px;
+}
+
+/* MY POINTS */
+.container-points {
+    position: relative;
+    top: 60px;
+    margin: 25px;
+}
+
+.container-points .points {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.container-points span {
+    display: inline-block;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: 20px;
+}
+
+.container-points .points-list {
+    position: relative;
+    top: 30px;
+    display: grid;
+    place-items: center;
+}
+
+.points-list ul {
+    list-style-type: none;
+}
+
+/* NEW DESTINATION */
+.newdest-header h1 {
+    font-size: 30px;
+}
+
+.container-newdest {
+    position: relative;
+    top: 70px;
+    margin: 25px;
+}
+
+.container-newdest label {
+    position: relative;
+    left: 25px;
+}
+
+.container-newdest input[type="text"] {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 32.5px;
+    outline: none;
+    padding: 20px 60px 20px 20px;
+    font-size: 17px;
+    color: #8D1D12;
+    margin-bottom: 15px;
+}
+
+.container-newdest form p:nth-child(3) {
+    width: 150px;
+    position: relative;
+    left: 170px;
+}
+
+.container-newdest form p:nth-child(3) input {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.container-newdest ul {
+    position: relative;
+    top: 15px;
+    list-style-type: none;
+}
+
+.container-newdest ul li {
+    margin-bottom: 10px;
+}
+
+.container-newdest input[type="submit"] {
+    position: relative;
+    top: 30px;
+    left: 70px;
+    height: 60px;
+    width: 170px;
+    background-color: #8DD35F;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container-newdest input[type="submit"]:hover {
+    box-shadow: 7px 7px 36px -21px rgba(0,0,0,0.75);
+}
+
+.newdest-img {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+}
+
+/* PARCOURS */
+.container-parcours {
+    position: relative;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.parcours-foot a {
+    position: absolute;
+    bottom: 0;
+    color: #b8463c;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.parcours-foot .covoiturage {
+    left: 10px;
+    bottom: 20px;
+}
+
+.parcours-foot .circulation {
+    left: 260px;
+    bottom: 20px;
+}
+
+.parcours-foot span {
+    position: absolute;
+    bottom: -70px;
+    display: inline-block;
+    height: 157px;
+    width: 239px;
+    border-radius: 50%;
+    background-color: white;
+    color:#b8463c;
+}
+
+.parcours-foot .covoiturage-back {
+    left: -100px;
+}
+
+.parcours-foot .circulation-back {
+    left: 230px;
+}
+
+.container-parcours .valider {
+    position: relative;
+    top: 30px;
+    display: grid;
+    place-items: center;
+    height: 60px;
+    width: 190px;
+    background-color: #8DD35F;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.container-parcours .valider:hover {
+    box-shadow: 7px 7px 36px -21px rgba(0,0,0,0.75);
+}
+
+.container-parcours .trajet {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+
+.container-parcours .trajet-title {
+    font-weight: bold;
+}
+
+.container-parcours .infos {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-parcours .infos .distance span:nth-child(1) {
+    color:#630b04;
+    text-decoration: underline;
+}
+
+.container-parcours .infos > div{
+    display: grid;
+    place-items: center;
+    background-color: white;
+    color:#BD3F32;
+    font-weight: bold;
+    height: 55px;
+    border-radius: 30px;
+    width: 160px;
+}
+
+/* TRAJET */
+.container-trajet {
+    position: relative;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-trajet .alert {
+    width: 80%;
+    text-align: justify;
+    color: #630b04;
+    padding: 10px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.container-trajet .alert p {
+    margin-bottom: 5px;
+}
+
+.container-trajet ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+    width: 80%;
+    gap: 25px;
+}
+
+.container-trajet ul li {
+    width: 100%;
+    background-color: white;
+    border-radius: 25px;
+    padding: 15px;
+    
+}
+
+.container-trajet ul a {
+    text-decoration: none;
+    color:#8D1D12;
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
+
+.container-trajet ul span {
+    color: #8D1D12;
 }

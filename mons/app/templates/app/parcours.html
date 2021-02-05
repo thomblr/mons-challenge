@@ -3,26 +3,42 @@
 {% block content %}
 
 <header>
-    <a href="/">Home</a>
+    <a href="/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
     <h1>Parcours</h1>
 </header>
 
-<div class="container">
+<div class="container-parcours">
     <box-icon name="{{ icon_type }}" color="white" animation="tada-hover" size="lg"></box-icon>
-    <p>Trajet de {{ start_location.address }}</p>
-    <p>Jusque {{ end_location.address }}</p>
-    <p>Distance : {{ distance }}</p>
+    <div class="trajet">
+        <span class="trajet-title">Trajet de</span> 
+        <span>{{ start_location.address }}</span>
+    </div>
 
-    <div class="parcours-info">
-        <p>Consommation</p>
-        <p>Durée du trajet</p>
+    <div class="trajet">
+        <span class="trajet-title">Jusque</span> 
+        <span>{{ end_location.address }}</span>
+    </div>
+
+    <div class="infos">
+        <div class="distance">
+            <span>Distance</span>
+            <span>{{ distance|floatformat }} km</span>
+        </div>
+    
+        <div class="distance">
+            <span>Emissions</span>
+            <span>{{ conso }} g/km CO²</span>
+        </div>
     </div>
     
-    <a href="/parcours_validation/">Valider le trajet</a>
+    <a class="valider" href="/parcours_validation/">Valider le trajet</a>
 </div>
 
-<footer>
-    <a href="#">Circulation</a>
+<footer class="parcours-foot">
+    <span class="covoiturage-back"></span>
+    <a class="covoiturage" href="#">Covoiturage</a>
+    <span class="circulation-back"></span>
+    <a class="circulation" href="#">Circulation</a>
 </footer>
 
 {% endblock %}

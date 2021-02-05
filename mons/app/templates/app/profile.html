@@ -2,22 +2,26 @@
 
 {% block content %}
 
-<header>
-    <a href="/">Back</a>
+<header class="profile-header">
+    <a href="/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
     <h1>Profil</h1>
 </header>
 
-<div class="container">
-    <p><box-icon name="user-circle" type="solid"></box-icon> Bienvenue {{ username }}</p>
-    <p>Mes points : {{ pts }}</p>
-    <a href="{% url 'logout' %}"><box-icon name='log-out'></box-icon></a>
+<div class="container-profile">
+    <div class="profile-head">
+        <box-icon name="user-circle" type="solid" color="white" size="md"></box-icon> 
+        <span>Bienvenue {{ username }}</span>
+    </div>
+    <a class="logout" href="{% url 'logout' %}"><box-icon name='log-out' color="white" size="md"></box-icon></a>
 
-    <ul>
-        <li><a href="/preferences/">Mes préférences</a></li>
-        <li><a href="#">Mon covoiturage</a></li>
-        <li><a href="/points/">Mes points</a></li>
-        <li><a href="#">Mes récompenses</a></li>
-    </ul>
+    <div class="buttons-settings">
+        <ul class="settings-profile">
+            <li><a href="/preferences/">Mes préférences</a></li>
+            <li><a href="#">Mon covoiturage</a></li>
+            <li><a href="/points/">Mes points</a></li>
+            <li><a href="#">Mes récompenses</a></li>
+        </ul>
+    </div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<header>
+    <a href="/preferences/"><box-icon name='arrow-back' size="lg" color="white"></box-icon></a>
+    <h1>Mes données</h1>
+</header>
+
+<div class="container-rgpd">
+    <p>L’application demande certaines données obligatoires dans un cadre de vérification anti-fraude et pour pouvoir remettre des récompenses conformes au nom des utilisateurs. Les informations ainsi obligatoires à partager pour pouvoir utiliser l’application sont les suivantes :</p>
+
+    <ul>
+        <li>Encoder ses titres / moyens de transport</li>
+        <li>Encoder son nom, prénom et adresse-mail</li>
+        <li>S’il en produit, ses annonces de covoiturage</li>
+        <li>S’il en reçoit, ses points</li>
+    </ul>
+
+    <p>Pour le reste, l’application n’oblige aucun droit de regard ou de collecte obligatoire. L’utilisateur est libre de partager ou non ses autres données. Ces informations sont les suivantes :
+    </p>
+
+    <ul>
+        <li>L’historique de ses agissements sur l’application (le choix du trajet, le moyen de locomotion utilisé, le nombre d’utilisation de l’application, etc).</li>
+        <li>Son adresse de préférence</li>
+    </ul>
+
+    <p>Cette application a pour but de récolter des données, si l’utilisateur est d’accord, uniquement destinées à être observées par la ville de Mons. La ville de Mons aura le droit de regard sur les données afin d’en sortir des statistiques et de comprendre l’impact de l’application et des solutions qu’elle propose.</p>
+
+    <form action="">
+        <div class="radio-input">
+            <input type="radio" name="rgpd" id="all" value="all">
+            <label for="all">J’accepte de partager l’entièreté de mes données</label>
+        </div>
+
+        <div class="radio-input">
+            <input type="radio" name="rgpd" id="necessary" value="necessary">
+            <label for="necessary">J’accepte de partager les données nécessaires</label>
+        </div>
+    </form>
+
+</div>
+
+<a href="/preferences/" class="valid-rgpd">Valider mon choix</a>
+
+{% endblock %}
