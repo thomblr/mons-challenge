@@ -123,10 +123,7 @@ def trajets(request):
         if len(cars) > 0:
             rent_car = True
 
-        bus = False
-        # all_bus = get_close_bus_station(lat, lng)
-        # if len(all_bus) > 0:
-        #     bus = True
+        bus = True
 
         distance_km = distance(
             results_start[0]['geometry']['lat'],
@@ -150,6 +147,7 @@ def trajets(request):
                 'foot': duration_trajet_pieds * 60 + 5,
                 'car': duration_trajet_car + 2,
                 'bike': duration_trajet_bike * 60 + 10,
+                'bus': 25,
             },
             'busy_hours': busy_hours,
             'eco': True if trip_type == 'eco' else False
@@ -190,6 +188,7 @@ def parcours(request, transport):
     if transport in transport_types:
         current_search = request.session.get('current_search', {})
         current_search['conso'] = co_conso[transport]
+        current_search['transport'] = transport
         request.session['trajet_type'] = transport
         template = loader.get_template('app/parcours.html')
         return HttpResponse(template.render(current_search, request))

@@ -35,8 +35,10 @@
 </div>
 
 <footer class="parcours-foot">
+    {% if transport == 'car' %}
     <span class="covoiturage-back"></span>
     <a class="covoiturage" href="#">Covoiturage</a>
+    {% endif %}
     <span class="circulation-back"></span>
     <a class="circulation" href="#">Circulation</a>
 </footer>

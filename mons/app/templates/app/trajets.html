@@ -26,6 +26,10 @@
         {% endif %}
     
         {% if gare %}
+        <li><a href="/parcours/bus/"><box-icon name='bus' color="#8D1D12"></box-icon><span>en bus</span> <span>{{ duration_trip.bus|floatformat:"0" }} min</span></a></li>
+        {% endif %}
+
+        {% if gare %}
         <li><a href="/parcours/train/"><box-icon name='train' color="#8D1D12"></box-icon><span>en train</span></a></li>
         {% endif %}
     
