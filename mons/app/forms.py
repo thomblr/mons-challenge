@@ -16,8 +16,8 @@ class SaveSettingsForm(forms.Form):
     ]
 
     home = forms.CharField(label="Adresse du domicile")
-    category = forms.ChoiceField(choices=CHOICES_category, widget=forms.RadioSelect, label="Catégorie d'utilisateur")
-    langue = forms.ChoiceField(choices=CHOICES_langue, widget=forms.RadioSelect, label="Langue")
+    category = forms.ChoiceField(choices=CHOICES_category, label="Catégorie d'utilisateur")
+    langue = forms.ChoiceField(choices=CHOICES_langue, label="Langue")
 
 
 class NewDestinationForm(forms.Form):
@@ -31,7 +31,7 @@ class NewDestinationForm(forms.Form):
         ('eco', 'Le plus écologique')
     ]
 
-    trip = forms.ChoiceField(choices=CHOICES_trip, widget=forms.RadioSelect)
+    trip = forms.ChoiceField(choices=CHOICES_trip, widget=forms.RadioSelect, label="")
 
 
 class AccueilDestinationForm(forms.Form):
